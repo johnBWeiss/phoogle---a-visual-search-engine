@@ -49,7 +49,7 @@ export default {
         },
         scraper: async (context, payload) => {
             try {
-                await axios.get(`http://localhost:5000/users:${payload}`).then(data => {
+                await axios.get(`http://localhost:5000/carFinance/:${payload}`).then(data => {
                     console.log(data.data);
                     if (!data.data) {
                         context.commit('error')
@@ -61,12 +61,6 @@ export default {
             } catch (e) {
                 context.commit('error')
             }
-
-
-
-
-
-
         },
         "post/update": async (context, payload) => {
             try {

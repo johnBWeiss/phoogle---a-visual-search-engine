@@ -47,6 +47,9 @@ export default {
       loading: true,
       headers: [
         { text: "מספר רכב ", value: "מספר רכב" },
+        { text: "סוג מנוע ", value: "סוג מנוע" },
+
+        { text: "גיר ", value: "גיר" },
         { text: "אגרת רכב", value: "אגרת רכב" },
         { text: " בעלות נוכחית", value: "בעלות נוכחית" },
         { text: "דגם", value: "דגם" },
