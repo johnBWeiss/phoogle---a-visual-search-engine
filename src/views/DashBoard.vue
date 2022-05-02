@@ -31,10 +31,14 @@
       <template v-slot:[`item.actions`]="{ item }">
         <div class="d-flex justify-space-between">
           <v-icon @click="deleteItem(item)">mdi-delete</v-icon>
-          <v-icon @click="editItem(item)">mdi-pencil</v-icon>
+          <v-icon @click.prevent="editItem(item)">mdi-pencil</v-icon>
         </div>
       </template>
     </v-data-table>
+    <v-card>
+      <v-icon @click="randomName()">mdi-pencil</v-icon>
+    </v-card>
+
     <v-spacer></v-spacer>
   </v-layout>
 </template>
@@ -48,20 +52,20 @@ export default {
       headers: [
         { text: "מספר רכב ", value: "מספר רכב" },
         { text: "סוג מנוע ", value: "סוג מנוע" },
-
         { text: "גיר ", value: "גיר" },
         { text: "אגרת רכב", value: "אגרת רכב" },
         { text: " בעלות נוכחית", value: "בעלות נוכחית" },
         { text: "דגם", value: "דגם" },
-        { text: "יצרן ", value: "יצרן" },
-
-        { text: "מספר שלדה", value: "מספר שלדה" },
-        { text: "צבע", value: "צבע" },
+        // { text: "יצרן ", value: "יצרן" },
+        // { text: "מספר שלדה", value: "מספר שלדה" },
+        // { text: "צבע", value: "צבע" },
         { text: "שנת עלייה לכביש ", value: "שנת עלייה לכביש" },
         { text: "תאריך טסט אחרון ", value: "תאריך טסט אחרון" },
-        { text: "תוצרת ", value: "תוצרת" },
+        // { text: "תוצרת ", value: "תוצרת" },
         { text: "תוקף רישיון ", value: "תוקף רישיון" },
         { text: "דגם ", value: "תת דגם" },
+        { text: "מחיר ", value: "מחיר" },
+
         { text: "פעולות ", value: "actions" }],
       items: [],
       search: "",
@@ -91,6 +95,7 @@ export default {
           this.items = this.$store.getters.carValue;
           this.loading = false
           this.showData = true
+          this.noResults = false
         }
 
       } catch (e) {
@@ -114,10 +119,12 @@ export default {
       this.loading = false
       if (this.items.length > 0) {
         this.showData = true
+        this.noResults = false
       }
     }
 
   },
+
   created() {
     this.$vuetify.rtl = true
     let items = this.$store.getters.carValue;
@@ -129,6 +136,7 @@ export default {
     //   this.loading = false
     // }
   },
+
 
 
 };

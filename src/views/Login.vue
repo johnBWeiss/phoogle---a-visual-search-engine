@@ -3,54 +3,25 @@
     <v-layout justify-center align-center>
       <v-card class="elevation-8" width="50%" color="secondary">
         <v-toolbar dark color="primary">
-          <v-toolbar-title
-            >{{
+          <v-toolbar-title>{{
               isRegister ? stateObj.register.name : stateObj.login.name
-            }}
-            form</v-toolbar-title
-          >
+          }}
+            form</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
           <form ref="form" @submit.prevent="isRegister ? register() : login()">
-            <v-text-field
-              v-model="username"
-              name="username"
-              label="Username"
-              type="email"
-              placeholder="username"
-              required
-            ></v-text-field>
+            <v-text-field v-model="username" name="username" label="Username" type="email" placeholder="username"
+              required></v-text-field>
 
-            <v-text-field
-              v-model="password"
-              name="password"
-              label="Password"
-              type="password"
-              placeholder="password"
-              required
-              @keyup="passwordLengthValidation"
-            ></v-text-field>
+            <v-text-field v-model="password" name="password" label="Password" type="password" placeholder="password"
+              required @keyup="passwordLengthValidation"></v-text-field>
 
-            <v-text-field
-              v-if="isRegister"
-              v-model="confirmPassword"
-              name="confirmPassword"
-              label="Confirm Password"
-              type="password"
-              placeholder="confirm password"
-              required
-            ></v-text-field>
+            <v-text-field v-if="isRegister" v-model="confirmPassword" name="confirmPassword" label="Confirm Password"
+              type="password" placeholder="confirm password" required></v-text-field>
             <div class="red--text">{{ errorMessage }}</div>
-            <v-btn
-              type="submit"
-              @click="loginOrRegister"
-              class="mt-4"
-              color="primary"
-              value="log in"
-              >{{
+            <v-btn type="submit" @click="loginOrRegister" class="mt-4" color="primary" value="log in">{{
                 isRegister ? stateObj.register.name : stateObj.login.name
-              }}</v-btn
-            >
+            }}</v-btn>
             <div class="grey--text mt-4" @click="isRegister = !isRegister">
               {{ toggleMessage }}
             </div>
@@ -63,7 +34,7 @@
 
 <script>
 import VueRouter from "../router/index";
-// import axios from "axios";
+
 export default {
   name: "LoginB",
   data() {
@@ -88,6 +59,7 @@ export default {
     };
   },
   methods: {
+
     login() {
       const { username } = this;
       console.log(username + "logged in");
