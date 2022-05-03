@@ -1,12 +1,12 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <router-link to="/DashBoard" class="ml-4 mr-3">
+      <router-link to="/DashBoard" class="ml-4 ">
         <v-icon>mdi-home </v-icon>
       </router-link>
-      <router-link to="/Post" class="ml-4">
+      <!-- <router-link to="/Post" class="ml-4">
         <v-icon>mdi-message </v-icon>
-      </router-link>
+      </router-link> -->
       <router-link to="/vuetifyTrain" class="ml-4">
         <v-icon>mdi-train </v-icon>
       </router-link>
