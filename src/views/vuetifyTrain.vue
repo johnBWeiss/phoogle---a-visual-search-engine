@@ -4,7 +4,7 @@
       <v-col mt-12></v-col>
       <v-col cols="12" class="d-flex justify-center title mt-12 ">
 
-        <h1 class="mt-12">
+        <h1>
           <span class="blueFont ">P</span><span class="redFont">h</span><span class="orangeFont ">o</span><span
             class="blueFont ">o</span>
           <span class="greenFont">g</span><span class="redFont ">l</span><span class="orangeFont ">e</span>
@@ -13,10 +13,6 @@
       <v-col cols="12" class=" d-flex justify-center">
         <input type="text" v-model="searchWord" class="input-field mt-12" placeholder="מה תרצו לחפש היום?
 ">
-      </v-col>
-
-      <v-col cols="12" class="d-flex justify-center align-center mt-8 mb-3 ">
-        <v-btn class="blue white--text" @click="randomName">חיפוש </v-btn>
       </v-col>
       <div class="container">
         <v-col v-if="!loaded" class="d-flex justify-center align-center spinner   " cols="5">
@@ -32,6 +28,10 @@
 
         </v-col>
       </div>
+      <v-col cols="12" class="d-flex justify-center align-center mt-8 mb-3 ">
+        <v-btn class="blue white--text" @click="randomName">חיפוש </v-btn>
+      </v-col>
+
       <v-col cols="12"></v-col>
 
       <v-col v-for="item in phootle" :key="item.title" class="d-flex child-flex text-center" sm="6" lg="4" cols="12"
@@ -45,6 +45,7 @@
           </a>
         </v-card>
       </v-col>
+
     </v-row>
   </v-container>
 </template>

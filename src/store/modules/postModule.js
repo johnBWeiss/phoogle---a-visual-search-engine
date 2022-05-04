@@ -126,30 +126,17 @@ export default {
                 await axios.get(`http://localhost:5000/screenshots/google/${payload}
                     `).then(data => {
                     context.commit('phootle', data.data)
-                    console.log(data.data);
-                    if (!data.data) {
-                        console.log("error");
-                        context.commit('error')
 
-                    } else {
-
-                        // let result = axios.post(`http://localhost:5000/screenshots/screenShot`, { link: data.data[0].link }
-                        // )
-                        // console.log(result);
-                        for (let a = 0; a < 3; a++) {
-                            axios.post(`http://localhost:5000/screenshots/screenShot`, { link: data.data[a].link }
-                            ).then(data => { console.log(data.data); })
-                        }
-                        //         data.data.forEach(async (v) => {
+                    //         data.data.forEach(async (v) => {
 
 
 
-                        //             axios.post(`http://localhost:5000/screenshots/screenShot`, { v }
-                        //             ).then(data => { context.commit('phootle', data.data) })
-                        //         })
-                        //         console.log(this.state.phootle);
-                    }
+                    //             axios.post(`http://localhost:5000/screenshots/screenShot`, { v }
+                    //             ).then(data => { context.commit('phootle', data.data) })
+                    //         })
+                    //         console.log(this.state.phootle);
                 }
+
                 );
 
             } catch (e) {
