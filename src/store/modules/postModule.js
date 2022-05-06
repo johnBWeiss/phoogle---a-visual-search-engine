@@ -9,11 +9,14 @@ export default {
         error: false,
         info: [],
         imgs: [],
-        phootle: {}
+        phootle: [],
+        links: []
 
     },
     mutations: {
-        phootle(state, data) { state.phootle = data },
+        // phootle(state, data) { state.phootle = data },
+        links(state, data) { state.links = data },
+        phootle(state, data) { state.phootle.push(...data) },
         images(state, data) { state.imgs.push(data) },
         info(state, data) { state.info.push(...data) },
         error(state) { state.error = true },
@@ -33,6 +36,7 @@ export default {
     },
     getters: {
         posts: (state) => state.posts,
+        linkArray: (state) => state.links,
         carValue: (state) => state.carData,
         error: (state) => state.error,
         imageArray: (state) => state.phootle,
@@ -62,10 +66,6 @@ export default {
             if (a.data.length > 0) {
                 console.log(a.data.length);
             }
-
-
-
-
 
         },
         scraper: async (context, payload) => {
@@ -98,33 +98,40 @@ export default {
             }
         },
 
+        linkFetch: async (context, payload) => {
+
+            await axios.get(`http://localhost:5000/screenshots/links/${payload}
+            `).then(data => {
+                console.log(data);
+                context.commit('links', data.data)
+            }
+            );
+        },
+
+        screenShotCaptureFetch: async (context, payload) => {
 
 
-        screenShotCaptureFetch: async () => {
-            fetch(`http://localhost:5000/screenshots/screenShot`, {
+            await fetch(`http://localhost:5000/screenshots/screenShot`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
 
-                body: JSON.stringify({ link: 'https://www.google.com/' })
-            }).then((response) => (response).json()).then((data) =>
-                console.log("saved?", data))
+                body: JSON.stringify({ link: payload })
+            }).then((response) => (response).text()).then((data) => {
+                context.commit('phootle', [{ title: '', link: 'https://en.wikipedia.org/wiki/S', imageCode: data }])
+
+                console.log("saved?", data)
+            })
 
         },
-
-
-
-
-
-
-
 
         fetcher: async (context, payload) => {
             try {
                 console.log('in fetcher');
                 await axios.get(`http://localhost:5000/screenshots/google/${payload}
                     `).then(data => {
+                    console.log(data);
                     context.commit('phootle', data.data)
 
                     //         data.data.forEach(async (v) => {
